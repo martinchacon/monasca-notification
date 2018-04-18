@@ -80,18 +80,18 @@ def get_statsd_client(dimensions=None):
     local_dims = dimensions.copy() if dimensions else {}
     local_dims.update(NOTIFICATION_DIMENSIONS)
     if CONF.statsd.enable:
-        LOG.debug("Stablishing connection with statsd on {0}:{1}"
-                  .format(CONF.statsd.host, CONF.statsd.port))
+        LOG.warn("Stablishing connection with statsd on {0}:{1}"
+                 .format(CONF.statsd.host, CONF.statsd.port))
         client = monascastatsd.Client(name='monasca',
                                       host=CONF.statsd.host,
                                       port=CONF.statsd.port,
                                       dimensions=local_dims)
     else:
-        LOG.debug("Overriding monascastatsd.Client to use it offline")
+        LOG.warn("Overriding monascastatsd.Client to use it offline")
         client = OfflineClient(name='monasca',
-                             host=CONF.statsd.host,
-                             port=CONF.statsd.port,
-                             dimensions=local_dims)
+                               host=CONF.statsd.host,
+                               port=CONF.statsd.port,
+                               dimensions=local_dims)
     return client
 
 

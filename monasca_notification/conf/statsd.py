@@ -24,7 +24,7 @@ statsd_group = cfg.OptGroup('statsd',
                             'to statsd server launched by monasca-agent.')
 
 statsd_opts = [
-    cfg.BoolOpt('enable', default=True,
+    cfg.BoolOpt('enable', default=False,
                 help='Determine if self monitoring is enabled'),
     cfg.HostAddressOpt('host', default=_DEFAULT_HOST,
                        help='IP address of statsd server.'),
